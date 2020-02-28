@@ -23,7 +23,7 @@ const EnergyTypes = [
     icon: ColorLessIcon,
   },
   {
-    name: 'Darness',
+    name: 'Darkness',
     icon: DarknessIcon,
   },
   {
@@ -82,7 +82,6 @@ const Attack = ({ attack }) => {
 };
 
 const Weaknesse = ({ weaknesse }) => {
-  console.log(EnergyTypes.find(x=>x.name === weaknesse.type))
   return (
     <>
       <Text style={{ paddingBottom: 11 }}>WEAKNESS</Text>
@@ -92,6 +91,22 @@ const Weaknesse = ({ weaknesse }) => {
       </View>
     </>
   );
+};
+
+const Resistence = ({ resistance }) => {
+  return (
+    <>
+      <Text style={{ paddingBottom: 11, marginTop: 11 }}>RESISTANCES</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <Image source={EnergyTypes.find(x=>x.name === resistance.type).icon} style={{ height: 25, width: 25, resizeMode: 'contain' }} />
+        <Text style={{ fontSize: 20, color: '#363636', }}> {resistance.value}</Text>
+      </View>
+    </>
+  );
+};
+
+const RetreatCost = ({ retreatCost }) => {
+  return <Image source={EnergyTypes.find(x=>x.name === retreatCost).icon} style={{ height: 25, width: 25, resizeMode: 'contain' }} />;
 };
 
 export const CardDetail = ({navigation, route}) => {
@@ -137,6 +152,35 @@ export const CardDetail = ({navigation, route}) => {
                 null
               )
             }
+            {
+              card.resistances ? (
+                card.resistances.map(resistance => <Resistence key={resistance.type} resistance={resistance} />)
+              ) 
+              : (
+                null
+              )
+            }
+            {
+              card.retreatCost ? (
+                <>
+                  <Text style={{ paddingBottom: 11, marginTop: 11 }}>RETREAT COST</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    { card.retreatCost.map(retreatCost => <RetreatCost retreatCost={retreatCost} /> ) }
+                  </View>
+                </>
+              )
+              : (
+                null
+              )
+            }
+            <Text style={{ marginTop: 40, fontSize: 11, color: '#4A4A4A' }}>ARTIST</Text>
+            <Text style={{ fontSize: 20, color: '#363636' }}>{ card.artist }</Text>
+
+            <Text style={{ marginTop: 40, fontSize: 11, color: '#4A4A4A' }}>RARITY</Text>
+            <Text style={{ fontSize: 20, color: '#363636' }}>{ card.rarity }</Text>
+
+            <Text style={{ marginTop: 40, fontSize: 11, color: '#4A4A4A' }}>SET</Text>
+            <Text style={{ fontSize: 20, color: '#363636' }}>{ card.set }</Text>
         </View>
       </View>
     </ScrollView>
