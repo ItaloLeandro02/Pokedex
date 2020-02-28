@@ -3,32 +3,25 @@ import {Image, View, Dimensions} from 'react-native';
 import {Text} from 'native-base';
 
 import {CustomHeader} from '../../custom-header';
+import styles from './styles';
 
 export const CardDetail = ({navigation, route}) => {
   const {card} = route.params;
-  console.log(card);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.content}>
       <CustomHeader title={card.name} navigation={navigation} />
-      <View style={{flexDirection: 'row'}}>
-        <View style={{width: '50%'}}>
-          <Image
-            source={{uri: card.imageUrl}}
-            style={{
-              height: Dimensions.get('window').height / 2,
-              width: Dimensions.get('window').width / 2,
-              resizeMode: 'contain',
-            }}
-          />
-        </View>
-        <View style={{padding: 60, flexDirection: 'row'}}>
-          <Text style={{paddingRight: 5}}>{card.name}</Text>
-          <Text>
-            {card.supertype} - {card.subtype}
-          </Text>
-          {card.hp ? <Text>HP {card.hp}</Text> : ''}
-        </View>
+      <View style={styles.body}>
+        <Image source={{uri: card.imageUrl}} style={styles.card} />
+        <Text style={styles.cardName}>{card.name}</Text>
+        <Text note style={styles.cardPokemonStatusStage}>
+          {card.supertype} - {card.subtype}
+        </Text>
+        {card.hp ? (
+          <Text style={styles.cardPokemonStatusHp}>HP {card.hp}</Text>
+        ) : (
+          ''
+        )}
       </View>
     </View>
   );
