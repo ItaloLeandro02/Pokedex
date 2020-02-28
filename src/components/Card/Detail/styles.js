@@ -6,22 +6,26 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  contentCardInfo: {
+    flexDirection: "row"
+  },
+
   body: {
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
   card: {
-    height: Dimensions.get('window').height * 0.75,
-    width: Dimensions.get('window').width * 0.75,
-    resizeMode: 'contain',
-    marginTop: 0,
+    height: Dimensions.get('window').height * 0.69,
+    width: Dimensions.get('window').width * 0.95,
+    resizeMode: 'stretch',
+    marginTop: 10,
+    alignSelf: "center"
   },
 
   cardName: {
     fontSize: 32,
     fontWeight: 'bold',
     color: '#363636',
+    marginTop: 10
   },
 
   cardPokemonStatusStage: {
@@ -32,6 +36,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#363636',
   },
+
+  pokemonEnergyType: {
+    height: 25,
+    width: 25,
+    resizeMode: 'contain',
+    marginLeft: 3
+  }
 });
 
 export default styles;
