@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header, Left, Body, Right, Button, Icon, Title} from 'native-base';
 
-export const CustomHeader = ({isHome, navigation, title}) => {
+const CustomHeader = ({isHome, navigation, title}) => {
   return (
     <Header>
       <Left>
@@ -21,3 +21,5 @@ export const CustomHeader = ({isHome, navigation, title}) => {
     </Header>
   );
 };
+
+export default CustomHeader;
