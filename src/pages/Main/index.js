@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Header from '../../components/custom-header';
+import Header from '../../components/Header';
 import Card from '../../components/Card';
-import {Cards, Container} from './styles';
+import { Cards, Container } from './styles';
 import api from '../../service/api';
 
-const Main = ({navigation}) => {
+const Main = ({ navigation }) => {
   const [state, setState] = useState({
     cards: [],
   });
@@ -13,16 +13,16 @@ const Main = ({navigation}) => {
   useEffect(() => {
     const getCards = async () => {
       const {
-        data: {cards},
+        data: { cards },
       } = await api.get('/cards');
 
-      setState({...state, cards});
+      setState({ ...state, cards });
     };
 
     getCards();
   }, []);
 
-  const {cards} = state;
+  const { cards } = state;
 
   return (
     <Container>
@@ -31,7 +31,7 @@ const Main = ({navigation}) => {
       <Cards
         data={cards}
         keyExtractor={card => String(card.id)}
-        renderItem={({item}) => <Card navigation={navigation} card={item} />}
+        renderItem={({ item }) => <Card navigation={navigation} card={item} />}
       />
     </Container>
   );
