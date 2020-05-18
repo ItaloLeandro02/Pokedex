@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
 import Card from '../../components/Card';
-import { Cards, Container } from './styles';
+import {
+  Cards,
+  Container,
+  EmptyListContent,
+  EmptyListIcon,
+  EmptyListTitle,
+  Input,
+} from './styles';
 import api from '../../service/api';
 
 const Main = ({ navigation }) => {
@@ -22,16 +29,33 @@ const Main = ({ navigation }) => {
     getCards();
   }, []);
 
+  const handleSearchCard = async pokemonName => {
+    setState({ ...state, pokemonName });
+    if (pokemonName.length > 3) {
+      const {
+        data: { cards },
+      } = await api.get(`/cards?name=${pokemonName}`);
+
+      setState({ ...state, cards });
+    }
+  };
+
   const { cards } = state;
 
   return (
     <Container>
-      <Header />
-
+      <Header isHome />
+      <Input onChangeText={handleSearchCard} />
       <Cards
         data={cards}
         keyExtractor={card => String(card.id)}
         renderItem={({ item }) => <Card navigation={navigation} card={item} />}
+        ListEmptyComponent={() => (
+          <EmptyListContent>
+            <EmptyListTitle>Nenhum card encontrado</EmptyListTitle>
+            <EmptyListIcon />
+          </EmptyListContent>
+        )}
       />
     </Container>
   );
