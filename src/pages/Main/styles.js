@@ -18,7 +18,7 @@ const heightPercentageToDP = heightPercent => {
 };
 
 export const Container = styled.View`
-  padding-bottom: ${heightPercentageToDP('16.5%')}px;
+  padding-bottom: ${heightPercentageToDP('16.6%')}px;
 `;
 
 export const Input = styled.TextInput.attrs({

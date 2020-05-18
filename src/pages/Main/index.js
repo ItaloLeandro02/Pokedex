@@ -40,6 +40,15 @@ const Main = ({ navigation }) => {
     }
   };
 
+  const rederEmptyList = () => {
+    return (
+      <EmptyListContent>
+        <EmptyListTitle>Nenhum card encontrado</EmptyListTitle>
+        <EmptyListIcon />
+      </EmptyListContent>
+    );
+  };
+
   const { cards } = state;
 
   return (
@@ -50,12 +59,7 @@ const Main = ({ navigation }) => {
         data={cards}
         keyExtractor={card => String(card.id)}
         renderItem={({ item }) => <Card navigation={navigation} card={item} />}
-        ListEmptyComponent={() => (
-          <EmptyListContent>
-            <EmptyListTitle>Nenhum card encontrado</EmptyListTitle>
-            <EmptyListIcon />
-          </EmptyListContent>
-        )}
+        ListEmptyComponent={rederEmptyList}
       />
     </Container>
   );
