@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import Card from '../../components/Card';
 import {
+  Avatar,
   Cards,
   Container,
+  ContentRow,
   EmptyListContent,
   EmptyListIcon,
   EmptyListTitle,
@@ -15,6 +17,7 @@ import api from '../../service/api';
 const Main = ({ navigation }) => {
   const [state, setState] = useState({
     cards: [],
+    cardsVisible: false,
   });
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const Main = ({ navigation }) => {
         data: { cards },
       } = await api.get('/cards');
 
-      setState({ ...state, cards });
+      setTimeout(() => setState({ ...state, cards, cardsVisible: true })), 5000;
     };
 
     getCards();
@@ -49,18 +52,36 @@ const Main = ({ navigation }) => {
     );
   };
 
-  const { cards } = state;
+  const renderRows = (numberRows = 1) => {
+    let shimmerRows = [];
+    for (let i = 0; i < numberRows - 1; i++) {
+        shimmerRows.push(<Avatar visible={cardsVisible} />);
+    }
+    
+    return (
+      <ContentRow>
+        <Avatar visible={cardsVisible} />
+        <Avatar visible={cardsVisible}>
+          <Input onChangeText={handleSearchCard} />
+          <Cards
+            data={cards}
+            keyExtractor={card => String(card.id)}
+            renderItem={({ item }) => <Card navigation={navigation} card={item} />}
+            ListEmptyComponent={rederEmptyList}
+          />
+        </Avatar>
+      </ContentRow>
+    );
+  }
+
+  const { cards, cardsVisible } = state;
 
   return (
     <Container>
       <Header isHome />
-      <Input onChangeText={handleSearchCard} />
-      <Cards
-        data={cards}
-        keyExtractor={card => String(card.id)}
-        renderItem={({ item }) => <Card navigation={navigation} card={item} />}
-        ListEmptyComponent={rederEmptyList}
-      />
+      
+      {renderRows(3)}
+      
     </Container>
   );
 };
