@@ -7,6 +7,7 @@ import Fire from './fire.png';
 import Grass from './grass.png';
 import Lightning from './lightning.png';
 import Metal from './metal.png';
+import NotFound from './not-found.png';
 import Psychic from './psychic.png';
 import Water from './water.png';
 
@@ -20,6 +21,7 @@ export {
   Grass,
   Lightning,
   Metal,
+  NotFound,
   Psychic,
   Water,
 };
