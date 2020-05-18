@@ -1,19 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Main from './pages/Main';
 import Detail from './pages/CardDetail';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Main">
-        <Tab.Screen name="Main" component={Main} />
-        <Tab.Screen name="Card" component={Detail} />
-      </Tab.Navigator>
+      <Stack.Navigator
+        initialRouteName="Main"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="Card" component={Detail} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
