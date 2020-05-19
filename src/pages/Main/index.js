@@ -54,34 +54,37 @@ const Main = ({ navigation }) => {
 
   const renderRows = (numberRows = 1) => {
     let shimmerRows = [];
+
+    shimmerRows.push();
     for (let i = 0; i < numberRows - 1; i++) {
-        shimmerRows.push(<Avatar visible={cardsVisible} />);
+      shimmerRows.push(<Avatar key={i} visible={cardsVisible} />);
     }
-    
-    return (
-      <ContentRow>
-        <Avatar visible={cardsVisible} />
-        <Avatar visible={cardsVisible}>
-          <Input onChangeText={handleSearchCard} />
-          <Cards
-            data={cards}
-            keyExtractor={card => String(card.id)}
-            renderItem={({ item }) => <Card navigation={navigation} card={item} />}
-            ListEmptyComponent={rederEmptyList}
-          />
-        </Avatar>
-      </ContentRow>
+
+    shimmerRows.push(
+      <Avatar key="key" visible={cardsVisible}>
+        <Input onChangeText={handleSearchCard} />
+        <Cards
+          data={cards}
+          keyExtractor={card => String(card.id)}
+          renderItem={({ item }) => (
+            <Card navigation={navigation} card={item} />
+          )}
+          ListEmptyComponent={rederEmptyList}
+        />
+      </Avatar>
     );
-  }
+
+    return <ContentRow>{shimmerRows}</ContentRow>;
+  };
 
   const { cards, cardsVisible } = state;
 
   return (
     <Container>
       <Header isHome />
-      
       {renderRows(3)}
-      
+      {renderRows(3)}
+      {renderRows(3)}
     </Container>
   );
 };
