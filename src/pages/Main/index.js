@@ -52,15 +52,26 @@ const Main = ({ navigation }) => {
     );
   };
 
-  const renderRows = (numberRows = 1) => {
+  const renderRows = (numberRows = 3) => {
     let shimmerRows = [];
 
-    shimmerRows.push();
-    for (let i = 0; i < numberRows - 1; i++) {
+    for (let i = 0; i < numberRows; i++) {
       shimmerRows.push(<Avatar key={i} visible={cardsVisible} />);
     }
 
-    shimmerRows.push(
+    return <ContentRow>{shimmerRows}</ContentRow>;
+  };
+
+  const { cards, cardsVisible } = state;
+
+  return (
+    <Container>
+      <Header isHome />
+
+      {renderRows()}
+      {renderRows()}
+      {renderRows()}
+
       <Avatar key="key" visible={cardsVisible}>
         <Input onChangeText={handleSearchCard} />
         <Cards
@@ -72,19 +83,6 @@ const Main = ({ navigation }) => {
           ListEmptyComponent={rederEmptyList}
         />
       </Avatar>
-    );
-
-    return <ContentRow>{shimmerRows}</ContentRow>;
-  };
-
-  const { cards, cardsVisible } = state;
-
-  return (
-    <Container>
-      <Header isHome />
-      {renderRows(3)}
-      {renderRows(3)}
-      {renderRows(3)}
     </Container>
   );
 };
