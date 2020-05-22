@@ -1,7 +1,14 @@
 import styled from 'styled-components/native';
-import { Animated, Dimensions, PixelRatio } from 'react-native';
+import {
+  Animated,
+  Dimensions,
+  PixelRatio
+} from 'react-native';
+import ShimmerPlaceHolder from 'react-native-shimmer-placeholder'
 
-import { NotFound } from '../../assets/Images';
+import {
+  NotFound
+} from '../../assets/Images';
 
 const widthPercentageToDP = widthPercent => {
   const screenWidth = Dimensions.get('window').width;
@@ -17,7 +24,7 @@ const heightPercentageToDP = heightPercent => {
   );
 };
 
-export const Container = styled.View`
+export const Container = styled.View `
   padding-bottom: ${heightPercentageToDP('16.6%')}px;
 `;
 
@@ -25,29 +32,46 @@ export const Input = styled.TextInput.attrs({
   autoCapitalize: 'none',
   autoCorrect: false,
   placeholder: 'Pesquise o nome do pokémon',
-})`
+})
+`
   padding: ${widthPercentageToDP('2.5%')}px;
 `;
 
 export const Cards = styled.FlatList.attrs({
   numColumns: 3,
   initialNumToRender: 5,
-})``;
+})
+``;
 
-export const EmptyListContent = styled.View`
+export const EmptyListContent = styled.View `
   align-items: center;
   justify-content: center;
   margin-top: ${heightPercentageToDP('20%')}px;
 `;
 
-export const EmptyListTitle = styled.Text`
+export const EmptyListTitle = styled.Text `
   font-size: ${widthPercentageToDP('6%')}px;
 `;
 
 export const EmptyListIcon = styled(Animated.Image).attrs({
   source: NotFound,
-})`
+})
+`
   width: ${widthPercentageToDP('50%')}px;
   height: ${heightPercentageToDP('20%')}px;
   margin-top: ${heightPercentageToDP('2.3%')}px;
+`;
+
+export const ContentRow = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Avatar = styled(ShimmerPlaceHolder).attrs({
+  autoRun: true,
+})`
+  width: ${widthPercentageToDP('30%')}px;
+  height: ${heightPercentageToDP('30%')}px;
+  padding: ${widthPercentageToDP('2.5%')}px;
 `;
