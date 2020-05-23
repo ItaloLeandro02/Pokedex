@@ -26,7 +26,7 @@ const Main = ({ navigation }) => {
         data: { cards },
       } = await api.get('/cards');
 
-      setTimeout(() => setState({ ...state, cards, cardsVisible: true })), 5000;
+      setState({ ...state, cards, cardsVisible: true });
     };
 
     getCards();
