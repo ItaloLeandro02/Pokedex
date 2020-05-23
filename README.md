@@ -6,7 +6,7 @@ Este é um simples projeto com a finalidade de listar os cards do site de games 
 
 <h3>Print Screens</h3>
 <p align="center">
-  <img src="https://github.com/ItaloLeandro02/Pokedex/blob/master/src/medias/splash_screen.png" width=30%/>
+  <img src="https://github.com/ItaloLeandro02/Pokedex/blob/master/src/medias/SplashScreen.png" width=30%/>
   <img src="https://github.com/ItaloLeandro02/Pokedex/blob/master/src/medias/CardListOne.jpg" width=30%/>
   <img src="https://github.com/ItaloLeandro02/Pokedex/blob/master/src/medias/CardListTwo.jpg" width=30%/>
 </p>
@@ -45,5 +45,5 @@ npm run android && npm run start ou  yarn android && yarn start
 
 * [Axios](https://github.com/axios/axios)
 * [React Navigation](https://reactnavigation.org/docs/getting-started)
-* [Styled Components](https://github.com/styled-components/styled-components
+* [Styled Components](https://github.com/styled-components/styled-components)
 * [React Native Shimmer Placeholder](https://github.com/tomzaku/react-native-shimmer-placeholder)
